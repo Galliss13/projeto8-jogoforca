@@ -23,6 +23,11 @@
     height: 500px;
 }
 
+.hangmanButtonLetters {
+    width: 400px;
+    position: relative;
+}
+
 .hangmanButtonLetters button {
     font-size: 20px;
     font-weight: bold;
@@ -32,6 +37,15 @@
     border-radius: 8px;
     padding: 15px;
     margin-top: 30px;
+    position: absolute;
+    right: 0;
+}
+
+.buttonLetters {
+    position: absolute;
+    font-size: 50px;
+    left: 30px;
+    bottom: 100px;
 }
 
 .keyboard {
