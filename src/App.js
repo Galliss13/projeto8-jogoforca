@@ -6,22 +6,23 @@ export default function App() {
   const sorteio =  palavras.sort(() => Math.random() - 0.5);
   const [wordDrawn, setWordDrawn] = React.useState(sorteio[0]);
   const [wordLetters, setWordLetters] = React.useState("");
-  const [estadoAlfabeto, setEstadoAlfabeto] = React.useState(alfabeto.map((letra) => letra = true))
+  const [selectedLetters, setSelectedLetters] = React.useState([]);
   const [mistakes, setMistakes] = React.useState(0);
 
   function chooseWord() {
     setWordDrawn(sorteio[1]);
-    setWordLetters(wordDrawn.split('').map((l) => l = '_ '))
+    setWordLetters(wordDrawn.split('').map((l) => l = '_ '));
+    setSelectedLetters([]);
   }
 
   function verifyButton(i) {
-    if (estadoAlfabeto[i] !== false) {
-      setEstadoAlfabeto(...estadoAlfabeto, estadoAlfabeto[i] = false)
+    if (!selectedLetters.includes(i)) {
+      setSelectedLetters([...selectedLetters, i])
     }
-
-    console.log(estadoAlfabeto);
+    console.log(selectedLetters);
   }
 
+  
   return (
     <div className="game">
       <div className="hangmanImageButton">
@@ -39,7 +40,7 @@ export default function App() {
         {alfabeto.map((letter, index) => (
           <button key={index}
             onClick={() => verifyButton(index)}
-            className="letter">
+            className={`letter ${selectedLetters.includes(index) ? 'finished' : ''}`}>
             {letter}
           </button>
         ))}
